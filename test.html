@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instant Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .quiz-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        #final-score {
+            font-size: 20px;
+            color: darkgreen;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h2 id="question">Loading...</h2>
+    <div id="answers"></div>
+    <p id="final-score"></p>
+</div>
+
+<script>
+    // Quiz questions and answers
+    const quizData = [
+        { 
+            question: "What is the capital of France?", 
+            answers: ["A) Berlin", "B) Madrid", "C) Paris", "D) Rome"], 
+            correct: "C" 
+        },
+        { 
+            question: "Which planet is known as the Red Planet?", 
+            answers: ["A) Earth", "B) Mars", "C) Jupiter", "D) Venus"], 
+            correct: "B" 
+        },
+        { 
+            question: "What is 5 + 3?", 
+            answers: ["A) 5", "B) 8", "C) 10", "D) 15"], 
+            correct: "B" 
+        }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    function loadQuestion() {
+        if (currentQuestionIndex >= quizData.length) {
+            showFinalScore();
+            return;
+        }
+
+        const questionData = quizData[currentQuestionIndex];
+        document.getElementById("question").innerText = questionData.question;
+
+        const answersDiv = document.getElementById("answers");
+        answersDiv.innerHTML = "";
+
+        questionData.answers.forEach((answer) => {
+            const btn = document.createElement("button");
+            btn.innerText = answer;
+            btn.classList.add("btn");
+            btn.onclick = () => checkAnswer(answer.charAt(0));
+            answersDiv.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(selected) {
+        if (selected === quizData[currentQuestionIndex].correct) {
+            score++;
+        }
+        currentQuestionIndex++;
+        setTimeout(loadQuestion, 300); // Small delay before moving to next question
+    }
+
+    function showFinalScore() {
+        document.getElementById("question").innerText = "Quiz Completed!";
+        document.getElementById("answers").innerHTML = "";
+        document.getElementById("final-score").innerText = `Your final score is: ${score} / ${quizData.length}`;
+    }
+
+    // Load first question on page load
+    loadQuestion();
+</script>
+
+</body>
+</html>
