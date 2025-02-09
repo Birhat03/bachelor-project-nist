@@ -18,6 +18,20 @@
             border-radius: 10px;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
         }
+        .progress-container {
+            width: 100%;
+            background-color: #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            height: 20px;
+        }
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: #28a745;
+            border-radius: 5px;
+            transition: width 0.3s;
+        }
         .btn {
             display: block;
             width: 100%;
@@ -32,21 +46,17 @@
         .btn:hover {
             background-color: #0056b3;
         }
-        .result {
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        #final-score {
-            font-size: 20px;
-            color: darkgreen;
-            margin-top: 15px;
-        }
         #restart-btn {
             display: none;
             background-color: #28a745;
         }
         #restart-btn:hover {
             background-color: #218838;
+        }
+        #final-score {
+            font-size: 20px;
+            color: darkgreen;
+            margin-top: 15px;
         }
     </style>
 </head>
@@ -55,6 +65,12 @@
 <div class="quiz-container">
     <h2 id="question">Loading...</h2>
     <div id="answers"></div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
     <p id="final-score"></p>
     <button id="restart-btn" class="btn" onclick="restartQuiz()">Restart Quiz</button>
 </div>
@@ -109,9 +125,16 @@
     function checkAnswer(selected) {
         if (selected === quizData[currentQuestionIndex].correct) {
             score++;
+            updateProgressBar();
         }
         currentQuestionIndex++;
         setTimeout(loadQuestion, 300); // Small delay before moving to next question
+    }
+
+    function updateProgressBar() {
+        const progressBar = document.getElementById("progress-bar");
+        const progressPercentage = (score / quizData.length) * 100;
+        progressBar.style.width = progressPercentage + "%";
     }
 
     function showFinalScore() {
@@ -124,6 +147,7 @@
     function restartQuiz() {
         currentQuestionIndex = 0;
         score = 0;
+        document.getElementById("progress-bar").style.width = "0%"; // Reset progress bar
         loadQuestion();
     }
 
