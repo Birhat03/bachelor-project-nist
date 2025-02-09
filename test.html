@@ -41,6 +41,13 @@
             color: darkgreen;
             margin-top: 15px;
         }
+        #restart-btn {
+            display: none;
+            background-color: #28a745;
+        }
+        #restart-btn:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 <body>
@@ -49,6 +56,7 @@
     <h2 id="question">Loading...</h2>
     <div id="answers"></div>
     <p id="final-score"></p>
+    <button id="restart-btn" class="btn" onclick="restartQuiz()">Restart Quiz</button>
 </div>
 
 <script>
@@ -80,6 +88,9 @@
             return;
         }
 
+        document.getElementById("final-score").innerText = "";
+        document.getElementById("restart-btn").style.display = "none";
+
         const questionData = quizData[currentQuestionIndex];
         document.getElementById("question").innerText = questionData.question;
 
@@ -107,6 +118,13 @@
         document.getElementById("question").innerText = "Quiz Completed!";
         document.getElementById("answers").innerHTML = "";
         document.getElementById("final-score").innerText = `Your final score is: ${score} / ${quizData.length}`;
+        document.getElementById("restart-btn").style.display = "block";
+    }
+
+    function restartQuiz() {
+        currentQuestionIndex = 0;
+        score = 0;
+        loadQuestion();
     }
 
     // Load first question on page load
