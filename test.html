@@ -42,9 +42,16 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
         .btn:hover {
             background-color: #0056b3;
+        }
+        .correct {
+            background-color: #28a745 !important; /* Green */
+        }
+        .incorrect {
+            background-color: #dc3545 !important; /* Red */
         }
         #restart-btn {
             display: none;
@@ -117,18 +124,31 @@
             const btn = document.createElement("button");
             btn.innerText = answer;
             btn.classList.add("btn");
-            btn.onclick = () => checkAnswer(answer.charAt(0));
+            btn.onclick = () => checkAnswer(btn, answer.charAt(0));
             answersDiv.appendChild(btn);
         });
     }
 
-    function checkAnswer(selected) {
-        if (selected === quizData[currentQuestionIndex].correct) {
+    function checkAnswer(button, selected) {
+        const isCorrect = selected === quizData[currentQuestionIndex].correct;
+
+        // Apply correct or incorrect color
+        if (isCorrect) {
+            button.classList.add("correct");
             score++;
             updateProgressBar();
+        } else {
+            button.classList.add("incorrect");
         }
-        currentQuestionIndex++;
-        setTimeout(loadQuestion, 300); // Small delay before moving to next question
+
+        // Disable all buttons to prevent multiple clicks
+        document.querySelectorAll(".btn").forEach(btn => btn.disabled = true);
+
+        // Move to the next question after a delay
+        setTimeout(() => {
+            currentQuestionIndex++;
+            loadQuestion();
+        }, 500); // 500ms delay
     }
 
     function updateProgressBar() {
