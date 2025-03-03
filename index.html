@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamified Privacy</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <div class="avatar-display" id="avatarDisplay"></div>
+        <div class="title">Gamified Privacy</div>
+    </div>
+    <div class="nav">
+        <a href="index.html">Home</a>
+        <a href="#">About</a>
+        <a href="#">Menu</a>
+    </div>
+    <div class="container">
+        <div class="content-box">
+            <h2>Gamified Privacy: Mastering NIST the Fun Way</h2>
+            <p>A simplified, engaging way to understand the NIST Privacy Framework through small games, quizzes, and interactive tools.</p>
+            <a href="avatar.html" class="button btn-blue" id="startLearningBtn">Start Learning Now</a>
+            <button class="button btn-yellow" onclick="startPlaying()">Start Playing Now</button>
+        </div>
+        <div class="pdf-box">
+            <h3>NIST Privacy Framework PDF</h3>
+            <a href="https://www.nist.gov/privacy-framework" target="_blank" id="downloadLink">Read more about NIST Framework!</a>
+        </div>
+    </div>
+    <script>
+        function updateAvatarDisplay() {
+            const avatarDisplay = document.getElementById("avatarDisplay");
+            const selectedAvatar = localStorage.getItem("selectedAvatar");
+            if (selectedAvatar) {
+                avatarDisplay.innerHTML = `
+                    <a href="avatar.html">  <div class="avatar-circle" style="background-color: ${selectedAvatar}; width: 50px; height: 50px; border-radius: 50%; border: 2px solid white;"></div> </a>
+                `;
+            }
+        }
+        updateAvatarDisplay();
+
+        document.getElementById("startLearningBtn").addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent default link behavior
+
+        let selectedAvatar = localStorage.getItem("selectedAvatar");
+
+        if (!selectedAvatar) {
+            window.location.href = "avatar.html"; // Redirect to avatar selection page
+        } else {
+            window.location.href = "learning.html"; // Redirect to learning page
+        }
+    });
+    </script>
+</body>
+</html>

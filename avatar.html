@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avatar Selection</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="avatar.css">
+    <script src="avatar.js" defer></script>
+</head>
+<body>
+    <div class="header">
+        <div class="avatar-display" id="avatarDisplay"></div>
+        <div class="title">Gamified Privacy</div>
+    </div>
+    <div class="nav">
+        <a href="index.html">Home</a>
+        <a href="#">About</a>
+        <a href="#">Menu</a>
+    </div>
+
+    <div id="avatarContent" class="container">
+        <div class="content-box">
+            <h2>Pick your avatar</h2>
+            <div class="avatar-grid"></div>
+            <button id="confirmButton" class="button btn-confirm" disabled></button>
+        </div>
+    </div>
+
+    <script>
+        updateAvatarDisplay(); // Ensure avatar display is updated based on localStorage
+    </script>
+</body>
+</html>
