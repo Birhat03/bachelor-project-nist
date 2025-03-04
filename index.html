@@ -16,6 +16,13 @@
         <a href="#">About</a>
         <a href="#">Menu</a>
     </div>
+    <div id="authContainer">
+        <input type="text" id="username" placeholder="Enter username">
+        <button onclick="register()">Register</button>
+        <button onclick="login()">Login</button>
+        <button onclick="guestMode()">Continue as Guest</button>
+    </div>
+    
     <div class="container">
         <div class="content-box">
             <h2>Gamified Privacy: Mastering NIST the Fun Way</h2>
@@ -41,18 +48,16 @@
         updateAvatarDisplay();
 
         document.getElementById("startLearningBtn").addEventListener("click", function (event) {
-    event.preventDefault(); // Prevent default link behavior
+        event.preventDefault(); // Prevent default link behavior
 
-    let selectedAvatar = localStorage.getItem("selectedAvatar");
+        let selectedAvatar = localStorage.getItem("selectedAvatar");
 
-    if (!selectedAvatar) {
-        // Pass the flag in the URL to signal that the user came from the Start Learning button
-        window.location.href = "avatar.html?startLearning=true"; // Add query parameter
-    } else {
-        window.location.href = "learning.html"; // Redirect to learning page
-    }
-});
-
+        if (!selectedAvatar) {
+            window.location.href = "avatar.html"; // Redirect to avatar selection page
+        } else {
+            window.location.href = "learning.html"; // Redirect to learning page
+        }
+    });
     </script>
 </body>
 </html>
