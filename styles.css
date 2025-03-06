@@ -160,3 +160,9 @@ body {
     margin-top: 5px;
     font-weight: bold;
 }
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}

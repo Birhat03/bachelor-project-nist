@@ -5,25 +5,29 @@ document.addEventListener("DOMContentLoaded", function () {
         registerBtn.addEventListener("click", function () {
             let username = document.getElementById("registerUsername").value.trim();
             let password = document.getElementById("registerPassword").value.trim();
-        
+            let registerError = document.getElementById("registerError");
+
+            registerError.textContent = ""; // Fjern tidligere feil
+
             if (username && password) {
                 let users = JSON.parse(localStorage.getItem("users")) || {};
-        
+
                 if (users[username]) {
-                    alert("Username already exists. Choose another one.");
+                    registerError.textContent = "Username already exists. Choose another one.";
+                    registerError.style.color = "red";
                 } else {
                     users[username] = { password: password };
                     localStorage.setItem("users", JSON.stringify(users));
-        
+
                     // Automatisk logg inn og gå til avatarvalg
                     localStorage.setItem("currentUser", username);
                     window.location.href = "avatar.html";
                 }
             } else {
-                alert("Please enter both username and password.");
+                registerError.textContent = "Please enter both username and password.";
+                registerError.style.color = "red";
             }
         });
-        
     }
 
     // Logg inn bruker
@@ -32,6 +36,9 @@ document.addEventListener("DOMContentLoaded", function () {
         loginBtn.addEventListener("click", function () {
             let username = document.getElementById("loginUsername").value.trim();
             let password = document.getElementById("loginPassword").value.trim();
+            let loginError = document.getElementById("loginError");
+
+            loginError.textContent = ""; // Fjern tidligere feil
             let users = JSON.parse(localStorage.getItem("users")) || {};
 
             if (users[username] && users[username].password === password) {
@@ -45,7 +52,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     window.location.href = "index.html"; // Ellers rett til index.html
                 }
             } else {
-                alert("Invalid username or password.");
+                loginError.textContent = "Invalid username or password.";
+                loginError.style.color = "red";
             }
         });
     }
