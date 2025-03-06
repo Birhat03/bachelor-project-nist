@@ -3,25 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning</title>
+    <title>Register/Login</title>
     <link rel="stylesheet" href="styles.css">
     <script src="auth.js" defer></script>
 </head>
 <body>
+
     <div class="header">
+        <div class="avatar-display" id="avatarDisplay"></div>
         <div class="title">Gamified Privacy</div>
-        <div class="avatar-container">
-            <div class="avatar-display" id="avatarDisplay"></div>
-            <div class="user-info" id="userInfo"></div>
-        </div>
-    </div>
-    <div class="nav" id="navMenu">
-        <a href="index.html">Home</a>
-        <a href="logout.html">Logout</a>
     </div>
 
     <div class="container">
-        <h2>Welcome to the Learning Section</h2>
+        <div class="content-box">
+        <h2>Register or Login</h2>
+        <input type="text" id="username" placeholder="Enter your username" required>
+        <button id="registerBtn">Register/Login</button>
+    </div>
     </div>
 </body>
 </html>
