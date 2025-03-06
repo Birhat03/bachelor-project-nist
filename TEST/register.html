@@ -6,6 +6,7 @@
     <title>Register/Login</title>
     <link rel="stylesheet" href="styles.css">
     <script src="auth.js" defer></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> 
 </head>
 <body>
 
@@ -13,27 +14,32 @@
         <div class="avatar-display" id="avatarDisplay"></div>
         <div class="title">Gamified Privacy</div>
     </div>
+
     <div class="nav" id="navMenu">
         <a href="index.html">Home</a>
     </div>
+
     <div class="container">
-        <div class="content-box">
-            <h2>Register</h2>
-            <input type="text" id="registerUsername" placeholder="Enter username" required>
-            <input type="password" id="registerPassword" placeholder="Enter password" required>
-            <p class="error-message" id="registerError"></p>
-            <button id="registerBtn">Register</button>
-        </div>
-    
-        <div class="content-box">
-            <h2>Login</h2>
-            <input type="text" id="loginUsername" placeholder="Enter username" required>
-            <input type="password" id="loginPassword" placeholder="Enter password" required>
-            <p class="error-message" id="loginError"></p>
-            <button id="loginBtn">Login</button>
+        <div class="form-container">
+            <!-- Registrering -->
+            <div class="content-box register-box">
+                <h2 class="register-title"><i class="fas fa-user-plus"></i> Register</h2>
+                <input type="text" id="registerUsername" class="input-field" placeholder="Enter username" required>
+                <input type="password" id="registerPassword" class="input-field" placeholder="Enter password" required>
+                <p class="error-message" id="registerError"></p>
+                <button id="registerBtn" class="btn-blue">Register</button>
+            </div>
+
+            <!-- Innlogging -->
+            <div class="content-box login-box">
+                <h2 class="login-title"><i class="fas fa-sign-in-alt"></i> Login</h2>
+                <input type="text" id="loginUsername" class="input-field" placeholder="Enter username" required>
+                <input type="password" id="loginPassword" class="input-field" placeholder="Enter password" required>
+                <p class="error-message" id="loginError"></p>
+                <button id="loginBtn" class="btn-yellow">Login</button>
+            </div>
         </div>
     </div>
-    
 
 </body>
 </html>
