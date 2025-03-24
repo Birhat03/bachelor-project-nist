@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games - Gamified Privacy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="games.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="progress.js"></script>
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+    <script src="learning.js"></script>
+    <script src="games.js"></script>
+    <script src="profile.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <div class="avatar-container">
+                <!-- Avatar will be inserted by JavaScript -->
+            </div>
+            <div class="title">Gamified Privacy</div>
+        </div>
+        <nav class="nav">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="#"><i class="fas fa-info-circle"></i> About</a>
+            <a href="#"><i class="fas fa-bars"></i> Menu</a>
+            <a href="learning.html"><i class="fas fa-book-open"></i> Learning</a>
+            <a href="games.html" class="active"><i class="fas fa-gamepad"></i> Games</a>
+            <a href="login.html" id="loginButton"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <button id="logoutButton" style="display: none;" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- Game selection section -->
+        <section id="game-selection" class="content-box game-selection">
+            <h1>Privacy Games</h1>
+            <p class="game-intro">Test your knowledge and earn points by playing these privacy-themed games. Complete games to reinforce your learning of the NIST Privacy Framework.</p>
+            
+            <!-- Game categories based on core functions -->
+            <div class="game-categories">
+                <button class="category-tab active" data-category="all">All Games</button>
+                <button class="category-tab" data-category="identify">Identify</button>
+                <button class="category-tab" data-category="govern">Govern</button>
+                <button class="category-tab" data-category="control">Control</button>
+                <button class="category-tab" data-category="communicate">Communicate</button>
+                <button class="category-tab" data-category="protect">Protect</button>
+            </div>
+            
+            <!-- Game cards -->
+            <div class="games-container" id="games-container">
+                <!-- Quiz Game -->
+                <div class="game-card" data-category="identify" data-game-id="privacy-quiz">
+                    <div class="game-header">
+                        <h3><i class="fas fa-question-circle"></i> Privacy Quiz Challenge</h3>
+                        <span class="game-difficulty">Beginner</span>
+                    </div>
+                    <div class="game-image">
+                        <img src="images/privacy_quiz.jpg" alt="Privacy Quiz" onerror="this.src='images/default-game.jpg'">
+                    </div>
+                    <p>Test your knowledge of privacy concepts with this multiple-choice quiz game.</p>
+                    <div class="game-footer">
+                        <span class="game-points"><i class="fas fa-star"></i> Earn up to 200 points</span>
+                        <button class="start-game-btn">Play Game</button>
+                    </div>
+                </div>
+                
+                <!-- Matching Game -->
+                <div class="game-card" data-category="govern" data-game-id="privacy-match">
+                    <div class="game-header">
+                        <h3><i class="fas fa-th"></i> Privacy Term Matcher</h3>
+                        <span class="game-difficulty">Intermediate</span>
+                    </div>
+                    <div class="game-image">
+                        <img src="images/privacy_quiz.jpg" alt="Matching Game" onerror="this.src='images/default-game.jpg'">
+                    </div>
+                    <p>Match privacy terms with their correct definitions in this memory-style game.</p>
+                    <div class="game-footer">
+                        <span class="game-points"><i class="fas fa-star"></i> Earn up to 150 points</span>
+                        <button class="start-game-btn">Play Game</button>
+                    </div>
+                </div>
+                
+                <!-- Scenario Game -->
+                <div class="game-card" data-category="control" data-game-id="privacy-scenario">
+                    <div class="game-header">
+                        <h3><i class="fas fa-sitemap"></i> Privacy Decision Maker</h3>
+                        <span class="game-difficulty">Advanced</span>
+                    </div>
+                    <div class="game-image">
+                        <img src="images/privacy_quiz.jpg" alt="Scenario Game" onerror="this.src='images/default-game.jpg'">
+                    </div>
+                    <p>Make decisions in realistic privacy scenarios and see the consequences of your choices.</p>
+                    <div class="game-footer">
+                        <span class="game-points"><i class="fas fa-star"></i> Earn up to 300 points</span>
+                        <button class="start-game-btn">Play Game</button>
+                    </div>
+                </div>
+                
+                <!-- Word Scramble -->
+                <div class="game-card" data-category="communicate" data-game-id="privacy-words">
+                    <div class="game-header">
+                        <h3><i class="fas fa-font"></i> Privacy Word Scramble</h3>
+                        <span class="game-difficulty">Beginner</span>
+                    </div>
+                    <div class="game-image">
+                        <img src="images/privacy_quiz.jpg" alt="Word Game" onerror="this.src='images/default-game.jpg'">
+                    </div>
+                    <p>Unscramble privacy-related terms against the clock in this fast-paced word game.</p>
+                    <div class="game-footer">
+                        <span class="game-points"><i class="fas fa-star"></i> Earn up to 100 points</span>
+                        <button class="start-game-btn">Play Game</button>
+                    </div>
+                </div>
+                
+                <!-- Security Challenge -->
+                <div class="game-card" data-category="protect" data-game-id="security-challenge">
+                    <div class="game-header">
+                        <h3><i class="fas fa-shield-alt"></i> Security Challenge</h3>
+                        <span class="game-difficulty">Advanced</span>
+                    </div>
+                    <div class="game-image">
+                        <img src="images/privacy_quiz.jpg" alt="Security Game" onerror="this.src='images/default-game.jpg'">
+                    </div>
+                    <p>Identify security vulnerabilities and fix them before time runs out in this challenge.</p>
+                    <div class="game-footer">
+                        <span class="game-points"><i class="fas fa-star"></i> Earn up to 250 points</span>
+                        <button class="start-game-btn">Play Game</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Game play area (hidden initially) -->
+        <section id="game-play-area" class="content-box game-play-area" style="display: none;">
+            <div class="game-navigation">
+                <button id="back-to-games" class="nav-button"><i class="fas fa-arrow-left"></i> Back to Games</button>
+                <h2 id="current-game-title">Game Title</h2>
+                <div class="game-score">
+                    <span id="current-score">Score: 0</span>
+                </div>
+            </div>
+            
+            <div id="game-container" class="game-container">
+                <!-- Game content will be loaded here -->
+            </div>
+            
+            <div class="game-controls">
+                <button id="restart-game" class="action-button restart-button">
+                    <i class="fas fa-redo"></i> Restart Game
+                </button>
+            </div>
+        </section>
+
+        <aside class="sidebar">
+            <div class="progress-tracker">
+                <h3><i class="fas fa-tasks"></i> Your Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" style="width: 0%"></div>
+                </div>
+                <div class="progress-percentage">0%</div>
+            </div>
+            
+            <div class="stats-card">
+                <h3><i class="fas fa-chart-line"></i> Your Stats</h3>
+                <div class="stat-item">
+                    <span>Games Completed</span>
+                    <span id="gamesCompleted">0/5</span>
+                </div>
+                <div class="stat-item">
+                    <span>High Scores</span>
+                    <span id="highScores">0</span>
+                </div>
+                <div class="stat-item">
+                    <span>Points Earned</span>
+                    <span id="pointsEarned">0</span>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <h3><i class="fas fa-trophy"></i> Top Players</h3>
+                <ul class="leaderboard" id="leaderboard">
+                    <li>Loading leaderboard...</li>
+                </ul>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Gamified Privacy</h4>
+                <p>Making privacy education fun and accessible</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Gamified Privacy. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Gamified Privacy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="progress.js"></script>
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+    <script src="learning.js"></script>
+    <script src="games.js"></script>
+    <script src="profile.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <div class="avatar-container">
+                <!-- Avatar will be inserted by JavaScript -->
+            </div>
+            <div class="title">Gamified Privacy</div>
+        </div>
+        <nav class="nav">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="learning.html"><i class="fas fa-book-open"></i> Learning</a>
+            <a href="games.html"><i class="fas fa-gamepad"></i> Games</a>
+            <button id="logoutButton" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="content-box profile-content">
+            <h1>User Profile</h1>
+            
+            <div class="profile-grid">
+                <!-- Left side - Avatar and basic info -->
+                <div class="profile-section">
+                    <div class="profile-avatar-container">
+                        <div id="currentAvatar" class="profile-avatar">
+                            <!-- Current avatar will be inserted here -->
+                        </div>
+                        <h2 id="profileUsername">Username</h2>
+                    </div>
+                    
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <div class="stat-icon"><i class="fas fa-book"></i></div>
+                            <div class="stat-details">
+                                <span class="stat-label">Modules Completed</span>
+                                <span id="modulesCompleted" class="stat-value">0/12</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon"><i class="fas fa-gamepad"></i></div>
+                            <div class="stat-details">
+                                <span class="stat-label">Games Played</span>
+                                <span id="gamesCompleted" class="stat-value">0/5</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon"><i class="fas fa-star"></i></div>
+                            <div class="stat-details">
+                                <span class="stat-label">Points Earned</span>
+                                <span id="pointsEarned" class="stat-value">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right side - Avatar selection -->
+                <div class="profile-section">
+                    <h3>Choose Your Avatar</h3>
+                    
+                    <div class="avatar-options">
+                        <div class="color-avatars">
+                            <h4>Colors</h4>
+                            <div class="avatar-grid">
+                                <!-- Color avatars will be added by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="image-avatars">
+                            <h4>Icons</h4>
+                            <div class="avatar-grid">
+                                <!-- Image avatars will be added by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-actions">
+                <button id="saveProfileButton" class="button btn-yellow">Save Changes</button>
+            </div>
+        </section>
+
+        <aside class="sidebar">
+            <div class="stats-card">
+                <h3>Your Progress</h3>
+                <div class="progress-indicator">
+                    <div class="progress-text">Overall Completion</div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" id="overallProgress"></div>
+                    </div>
+                    <div class="progress-percentage" id="overallPercentage">0%</div>
+                </div>
+                
+                <div class="progress-indicator">
+                    <div class="progress-text">Learning Modules</div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" id="modulesProgress"></div>
+                    </div>
+                    <div class="progress-percentage" id="modulesPercentage">0%</div>
+                </div>
+                
+                <div class="progress-indicator">
+                    <div class="progress-text">Games Mastery</div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" id="gamesProgress"></div>
+                    </div>
+                    <div class="progress-percentage" id="gamesPercentage">0%</div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Gamified Privacy Learning Platform</p>
+        </div>
+    </footer>
+</body>
+</html>

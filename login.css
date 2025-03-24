@@ -1,0 +1,177 @@
+/* Modern login page styling */
+body {
+    background: linear-gradient(135deg, #001429, #003366);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    width: 380px;
+    padding: 40px 30px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.login-container h1 {
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffcc00;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Toggle buttons */
+.form-toggle {
+    display: flex;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 3px;
+}
+
+.toggle-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 10px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn.active {
+    background: #ffcc00;
+    color: #000;
+    font-weight: 600;
+}
+
+/* Input groups with icons */
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8a8a8a;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 15px 14px 45px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #ffcc00;
+}
+
+/* Form footer with remember me and forgot password */
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+}
+
+.remember-me input {
+    margin-right: 5px;
+}
+
+.forgot-password {
+    color: #ffcc00;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* Error message */
+.error-message {
+    color: #ff3b3b;
+    margin-bottom: 15px;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+/* Buttons */
+.login-btn, .signup-btn {
+    background: #ffcc00;
+    color: black;
+    border: none;
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.login-btn:hover, .signup-btn:hover {
+    background: #ffdd44;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.login-btn:active, .signup-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Home link */
+.home-link {
+    margin-top: 20px;
+}
+
+.home-link a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.home-link a:hover {
+    color: #ffcc00;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#loginForm, #registerForm {
+    animation: fadeIn 0.5s ease-out;
+}

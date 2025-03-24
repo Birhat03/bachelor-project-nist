@@ -5,70 +5,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gamified Privacy</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="auth.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="progress.js"></script>
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+    <script src="learning.js"></script>
+    <script src="games.js"></script>
+    <script src="profile.js"></script>
 </head>
 <body>
-    <div class="header">
-        <div class="title">Gamified Privacy</div>
-        <div class="avatar-container">
-            <div class="avatar-display" id="avatarDisplay"></div>
-            <div class="user-info" id="userInfo"></div>
+    <header class="header">
+        <div class="header-left">
+            <div class="avatar-container">
+                <!-- Avatar will be inserted by auth.js -->
+            </div>
+            <div class="title">Gamified Privacy</div>
         </div>
-    </div>
-    
-    <div class="nav" id="navMenu">
-        <a href="index.html">Home</a>
-    </div>
-    <div class="container">
-        <div class="content-box">
-            <h2>Gamified Privacy: Mastering NIST the Fun Way</h2>
-            <p>A simplified, engaging way to understand the NIST Privacy Framework through small games, quizzes, and interactive tools.</p>
-            <a href="#" class="button btn-blue" id="startLearningBtn">Start Learning Now</a>
+        <nav class="nav">
+            <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
+            <a href="#"><i class="fas fa-info-circle"></i> About</a>
+            <a href="#"><i class="fas fa-bars"></i> Menu</a>
+            <a href="login.html" id="loginButton"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <button id="logoutButton" style="display: none;" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="content-box">
+            <h1>Gamified Privacy</h1>
+            <h2>Mastering NIST the Fun Way</h2>
+            <p>A simplified, engaging approach to understanding the NIST Privacy Framework through interactive games, quizzes, and tools designed to make learning about privacy both educational and entertaining.</p>
+            <div class="button-container">
+                <a href="learning.html" class="button btn-blue"><i class="fas fa-book-open"></i> Start Learning</a>
+                <a href="games.html" class="button btn-yellow"><i class="fas fa-gamepad"></i> Play Games</a>
+            </div>
+            <div class="progress-indicator">
+                <div class="progress-text">Your learning progress</div>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" style="width: 0%"></div>
+                </div>
+                <div class="progress-percentage">0%</div>
+            </div>
+        </section>
+
+        <aside class="sidebar">
+            <div class="pdf-box">
+                <h3><i class="fas fa-file-pdf"></i> NIST Privacy Framework</h3>
+                <p>Access the official framework documentation</p>
+                <a href="https://www.nist.gov/privacy-framework" target="_blank" class="download-btn">
+                    <i class="fas fa-download"></i> DOWNLOAD PDF
+                </a>
+            </div>
+            <div class="info-card">
+                <h3><i class="fas fa-shield-alt"></i> What is NIST?</h3>
+                <p class="nist-info">The NIST Privacy Framework is a voluntary tool developed in collaboration with stakeholders intended to help organizations identify and manage privacy risks to build innovative products and services while protecting individuals' privacy.</p>
+            </div>
+            <div class="stats-card">
+                <h3><i class="fas fa-chart-line"></i> Your Stats</h3>
+                <div class="stat-item">
+                    <span>Modules Completed</span>
+                    <span id="modulesCompleted">0/5</span>
+                </div>
+                <div class="stat-item">
+                    <span>Quizzes Passed</span>
+                    <span id="quizzesPassed">0/10</span>
+                </div>
+                <div class="stat-item">
+                    <span>Points Earned</span>
+                    <span id="pointsEarned">0</span>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Gamified Privacy</h4>
+                <p>Making privacy education fun and accessible</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
         </div>
-
-        <div class="pdf-box">
-            <h3>NIST Privacy Framework PDF</h3>
-            <a href="https://www.nist.gov/privacy-framework" target="_blank" id="downloadLink">Read more about NIST Framework!</a>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Gamified Privacy. All rights reserved.</p>
         </div>
-    </div>
-
-    <script>
-        document.getElementById("startLearningBtn").addEventListener("click", function (event) {
-            event.preventDefault();
-            let currentUser = localStorage.getItem("currentUser");
-        
-            if (!currentUser) {
-                window.location.href = "register.html";
-            } else {
-                let userData = JSON.parse(localStorage.getItem("userData")) || {};
-                let selectedAvatar = userData[currentUser]?.avatar;
-        
-                if (!selectedAvatar) {
-                    window.location.href = "avatar.html"; // Første gang -> avatarvalg
-                } else {
-                    window.location.href = "learning.html"; // Allerede valgt -> læring
-                }
-            }
-        });
-        </script>
-        
-<script>
-    function updateNav() {
-        const userInfo = document.getElementById("userInfo");
-        let currentUser = localStorage.getItem("currentUser");
-        let userData = JSON.parse(localStorage.getItem("userData")) || {};
-        let selectedAvatar = userData[currentUser]?.avatar || "gray";
-
-        if (currentUser) {
-            userInfo.innerHTML = `
-                <div class="avatar-circle" style="background-color: ${selectedAvatar}; width: 50px; height: 50px; border-radius: 50%;"></div>
-                <span>${currentUser}</span>
-            `;
-        }
-    }
-
-    updateNav();
-</script>
-
+    </footer>
 </body>
 </html>

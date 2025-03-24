@@ -3,25 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learning</title>
+    <title>Learning - Gamified Privacy</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="auth.js" defer></script>
+    <link rel="stylesheet" href="learning.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="progress.js"></script>
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+    <script src="learning.js"></script>
+    <script src="games.js"></script>
+    <script src="profile.js"></script>
 </head>
 <body>
-    <div class="header">
-        <div class="title">Gamified Privacy</div>
-        <div class="avatar-container">
-            <div class="avatar-display" id="avatarDisplay"></div>
-            <div class="user-info" id="userInfo"></div>
+    <header class="header">
+        <div class="header-left">
+            <div class="avatar-container">
+                <!-- Avatar will be inserted by JavaScript -->
+            </div>
+            <div class="title">Gamified Privacy</div>
         </div>
-    </div>
-    <div class="nav" id="navMenu">
-        <a href="index.html">Home</a>
-        <a href="logout.html">Logout</a>
-    </div>
+        <nav class="nav">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="#"><i class="fas fa-info-circle"></i> About</a>
+            <a href="#"><i class="fas fa-bars"></i> Menu</a>
+            <a href="learning.html" class="active"><i class="fas fa-book-open"></i> Learning</a>
+            <a href="login.html" id="loginButton"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <button id="logoutButton" style="display: none;" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </nav>
+    </header>
 
-    <div class="container">
-        <h2>Welcome to the Learning Section</h2>
-    </div>
+    <main class="container">
+        <!-- Section for selecting core functions and modules -->
+        <section id="selection-section" class="content-box learning-content">
+            <h1>NIST Privacy Framework</h1>
+            <p class="learning-intro">Select a core function to begin learning about the NIST Privacy Framework. Complete modules to earn points and track your progress.</p>
+
+            <!-- Core function selection tabs -->
+            <div class="core-tabs">
+                <button class="core-tab active" data-core="identify">Identify</button>
+                <button class="core-tab" data-core="govern">Govern</button>
+                <button class="core-tab" data-core="control">Control</button>
+                <button class="core-tab" data-core="communicate">Communicate</button>
+                <button class="core-tab" data-core="protect">Protect</button>
+            </div>
+
+            <!-- Module selection based on core function -->
+            <div class="modules-container" id="modules-container">
+                <!-- Identify core function modules -->
+                <div class="core-modules active" id="identify-modules">
+                    <div class="core-header">
+                        <h2><i class="fas fa-search"></i> Identify Core Function</h2>
+                        <p>Develop the organizational understanding to manage privacy risk for individuals arising from data processing.</p>
+                    </div>
+                    
+                    <div class="module-card" data-module-id="1" data-core="identify">
+                        <div class="module-header">
+                            <h3><i class="fas fa-lock-open"></i> Module 1: Privacy Risk Assessment</h3>
+                            <span class="module-status">Not Started</span>
+                        </div>
+                        <p>Learn how to identify and assess privacy risks in systems and processes.</p>
+                        <div class="module-footer">
+                            <span class="module-duration"><i class="far fa-clock"></i> 15 minutes</span>
+                            <button class="start-module-btn">Start Module</button>
+                        </div>
+                    </div>
+
+                    <div class="module-card locked" data-module-id="2" data-core="identify">
+                        <div class="module-header">
+                            <h3><i class="fas fa-lock"></i> Module 2: Data Inventory</h3>
+                            <span class="module-status">Locked</span>
+                        </div>
+                        <p>Learn how to catalog data processing activities and systems.</p>
+                        <div class="module-footer">
+                            <span class="module-duration"><i class="far fa-clock"></i> 20 minutes</span>
+                            <button class="start-module-btn" disabled>Complete Previous Module</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other core function modules will be populated here -->
+                <div class="core-modules" id="govern-modules"><!-- Content will be loaded via JS --></div>
+                <div class="core-modules" id="control-modules"><!-- Content will be loaded via JS --></div>
+                <div class="core-modules" id="communicate-modules"><!-- Content will be loaded via JS --></div>
+                <div class="core-modules" id="protect-modules"><!-- Content will be loaded via JS --></div>
+            </div>
+        </section>
+
+        <!-- Section for displaying module content (hidden initially) -->
+        <section id="module-content-section" class="content-box module-reader" style="display: none;">
+            <div class="module-navigation">
+                <button id="back-to-modules" class="nav-button"><i class="fas fa-arrow-left"></i> Back to Modules</button>
+                <button id="mark-complete-btn" class="nav-button complete-button"><i class="fas fa-check"></i> Mark Complete</button>
+            </div>
+            
+            <h2 id="current-module-title"></h2>
+            <div id="module-content-display" class="module-content"></div>
+        </section>
+
+        <aside class="sidebar">
+            <div class="progress-tracker">
+                <h3><i class="fas fa-tasks"></i> Your Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" style="width: 0%"></div>
+                </div>
+                <div class="progress-percentage">0%</div>
+            </div>
+            
+            <div class="stats-card">
+                <h3><i class="fas fa-chart-line"></i> Your Stats</h3>
+                <div class="stat-item">
+                    <span>Modules Completed</span>
+                    <span id="modulesCompleted">0/5</span>
+                </div>
+                <div class="stat-item">
+                    <span>Quizzes Passed</span>
+                    <span id="quizzesPassed">0/10</span>
+                </div>
+                <div class="stat-item">
+                    <span>Points Earned</span>
+                    <span id="pointsEarned">0</span>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <h3><i class="fas fa-lightbulb"></i> Learning Tips</h3>
+                <ul class="tips-list">
+                    <li>Complete modules in order for the best experience</li>
+                    <li>Take quizzes to reinforce your learning</li>
+                    <li>Apply concepts to real-world scenarios</li>
+                </ul>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Gamified Privacy</h4>
+                <p>Making privacy education fun and accessible</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Gamified Privacy. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
